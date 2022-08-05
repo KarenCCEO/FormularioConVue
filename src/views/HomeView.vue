@@ -1,13 +1,14 @@
 <template>
  <form >
-  <input type="text"
+  <input 
+  type="text"
   class="from-control my-2"
   placeholder="Ingrese su nombre"
-  v-model="texto"
+  v-model="tarea.nombre"
   >
  </form>
  <p>
-  {{texto}}
+  {{tarea}}
  </p>
 </template>
 
@@ -21,7 +22,11 @@ export default {
 },
 data(){
   return{
-    texto:''
+    tarea:{
+      nombre:''
+
+    }
+  
   }
 }
 }
