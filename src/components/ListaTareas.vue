@@ -28,7 +28,17 @@
         </td>
       <td>{{item.estado}}</td>
       <td>{{item.numero}}</td>
-      <td>esta es una accion</td>
+      <td>
+        <!--cada vez que se presiona el boton se ejecuta la accion delete tareas que se encuentra en el index y toma el id para poder borrar el elemento-->
+        <button class="btn btn-danger btn-sm" @click="deleteTareas(item.id)">    
+            Eliminar 
+
+        </button>
+        <button class="btn btn-warning btn-sm">    
+            Editar
+
+        </button>
+      </td>
     </tr>
     
   </tbody>
@@ -37,10 +47,14 @@
 </template>
 
 <script>
-import{mapState} from 'vuex'
+import{mapState, mapActions} from 'vuex'
 export default {
     computed:{
         ...mapState(['tareas'])
+    }
+    ,
+    methods:{
+        ...mapActions(['deleteTareas'])
     }
 
 }
