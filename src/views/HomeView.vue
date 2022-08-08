@@ -8,13 +8,17 @@
 
  <hr>
  <p>
+  <!---->
+  <!--Muestra todo lo que esta dentro de las tareas-->
   {{tarea}}
  </p>
+ <ListaTareas />
 </template>
 
 <script>
 import inputC from '../components/InputC.vue'
 import { mapActions } from 'vuex'
+import ListaTareas from '../components/ListaTareas.vue'
 const shortid = require('shortid');
 
 
@@ -24,8 +28,8 @@ const shortid = require('shortid');
 export default {
   name: 'Home',
   components: {
-    inputC
- 
+    inputC,
+    ListaTareas
 },
 data(){
   return{
@@ -51,14 +55,15 @@ methods:{
       return
     }
     console.log('no esta vacio')
-    //generar datos 
+    //generar id random 
     this.tarea.id = shortid.generate()
     console.log(this.tarea.id)
 
     //enviar datos 
 this.setTareas(this.tarea)
-
+//Limpiando los datos
     this.tarea = {
+      id:'',
       nombre:'',
       categorias:[],
       estado:'',
