@@ -22,10 +22,15 @@ export default createStore({
     eliminar(state, payload){
       //filtramos todos los elementos que son diferentes de el id que esta en payload
       state.tareas =state.tareas.filter(item => item.id !== payload)
+    },
+    tarea(state, payload){
+      state.tarea = state.tareas.find(item => item.id === payload )
+
     }
 
   },
   actions: {
+    
     setTareas({commit}, tarea){
       //set esta arriba en las mutaciones 
       commit('set', tarea)
@@ -33,6 +38,10 @@ export default createStore({
     },
     deleteTareas({commit}, id){
       commit('eliminar', id)
+    },
+    //imprime las tareas en la pagina de editar 
+    setTarea({commit}, id){
+      commit('tarea', id)
     }
   },
   modules: {
