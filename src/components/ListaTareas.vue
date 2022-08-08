@@ -17,14 +17,14 @@
       <th scope="row">{{item.id}}</th>
       <td>{{item.nombre}}</td>
       <td>
-        <span v-for="(cat, index) in item.categorias" :key="index">
-    
-        {{
-            //separando con comas los datos que hay dentro dle array categorias
-            (item.categorias.lenght === index + 1) ? cat : cat + ', '
-        }}
 
-        </span>
+    
+     
+            <!--separando con comas los datos que hay dentro dle array categorias-->
+           {{item.categorias.join(', ')}}
+      
+
+       
         </td>
       <td>{{item.estado}}</td>
       <td>{{item.numero}}</td>
