@@ -14,6 +14,8 @@
 
 <script>
 import inputC from '../components/InputC.vue'
+import { mapActions } from 'vuex'
+const shortid = require('shortid');
 
 
 
@@ -40,6 +42,7 @@ data(){
   }
 },
 methods:{
+  ...mapActions(['setTareas']),
   procesarFormulario(){
     console.log(this.tarea)
     //validacion si un nombre en el formulario viene vacio 
@@ -48,7 +51,13 @@ methods:{
       return
     }
     console.log('no esta vacio')
+    //generar datos 
+    this.tarea.id = shortid.generate()
+    console.log(this.tarea.id)
+
     //enviar datos 
+this.setTareas(this.tarea)
+
     this.tarea = {
       nombre:'',
       categorias:[],
