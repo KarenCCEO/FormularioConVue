@@ -1,5 +1,6 @@
 <template>
- <form >
+<!--Se agrega el .prevent para evitar que se refresque la pagina por accion del get -->
+ <form @submit.prevent="procesarFormulario" >
   <input 
   type="text"
   class="from-control my-2"
@@ -76,11 +77,16 @@
    <input
    type="number"
    class="form-control"
-   v-model.number="tarea.numero">
+   v-model.trim="tarea.numero">
   
     
 
   </div>
+  <div class="d-grid gap-2">
+
+  <button class="btn btn-dark mt-2" type="submit" :disabled="bloquear">procesar</button>
+</div>
+  
 
  </form>
  <hr>
@@ -90,6 +96,9 @@
 </template>
 
 <script>
+import { computed } from '@vue/runtime-core'
+
+
 
 
 export default {
@@ -105,9 +114,35 @@ data(){
       estado:'',
       numero:0
 
+
     }
   
   }
+},
+methods:{
+  procesarFormulario(){
+    console.log(this.tarea)
+    //validacion si un nombre en el formulario viene vacio 
+    if(this.tarea.nombre.trim() === ""){
+      console.log('Campo vacío')
+      return
+    }
+    console.log('no esta vacio')
+    //enviar datos 
+    this.tarea = {
+      nombre:'',
+      categorias:[],
+      estado:'',
+      numero:0
+    }
+  }
+
+},
+computed:{
+  bloquear(){
+    return this.tarea.nombre.trim() === "" ? true : false
+  }
+
 }
 }
 </script>
